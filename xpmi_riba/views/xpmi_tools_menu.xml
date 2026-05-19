@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        name="Xpmi Tools"
+        id="menu_tools_import"
+        sequence="13"
+        web_icon="xpmi_import,static/description/module.png"
+        groups="xpmi_import.import_tools_group_user"
+    />
+</odoo>
