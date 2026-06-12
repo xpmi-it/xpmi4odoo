@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 OCA
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="account_payment_term_form_view_fee" model="ir.ui.view">
+        <field name="name">account.payment.term.form.fee</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <group>
+                    <field
+                        name="collection_fee_product_id"
+                        string="Collection Fee Product"
+                        options="{'no_create': False, 'no_create_edit': False}"
+                        help="Service product to add automatically to sale orders using this payment term."
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

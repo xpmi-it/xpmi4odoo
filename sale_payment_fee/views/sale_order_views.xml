@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 OCA
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="sale_order_form_view_fee" model="ir.ui.view">
+        <field name="name">sale.order.form.fee</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Hidden flag column on order lines tree (Odoo 18 list syntax) -->
+            <xpath expr="//field[@name='order_line']/list" position="inside">
+                <field name="is_collection_fee" column_invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
