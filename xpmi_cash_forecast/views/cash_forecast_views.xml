@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_cash_forecast_line_list" model="ir.ui.view">
+        <field name="name">xpmi.cash.forecast.line.list</field>
+        <field name="model">xpmi.cash.forecast.line</field>
+        <field name="arch" type="xml">
+            <list string="Previsioni di cassa" create="false" edit="false" delete="false"
+                  default_order="forecast_date">
+                <field name="forecast_date" />
+                <field name="period_date" optional="hide" />
+                <field name="period_month" optional="hide" />
+                <field name="period_week" optional="hide" />
+                <field name="document_type" />
+                <field name="name" />
+                <field name="partner_id" optional="show" />
+                <field name="document_date" optional="hide" />
+                <field name="invoice_source" optional="show" />
+                <field name="payment_term_id" optional="hide" />
+                <field name="direction" optional="hide" />
+                <field name="amount" sum="Totale previsto" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="company_id" groups="base.group_multi_company" optional="hide" />
+                <button name="action_open_document" type="object" icon="fa-external-link"
+                        title="Apri documento" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cash_forecast_line_pivot" model="ir.ui.view">
+        <field name="name">xpmi.cash.forecast.line.pivot</field>
+        <field name="model">xpmi.cash.forecast.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Previsioni di cassa" sample="1">
+                <field name="document_type" type="row" />
+                <field name="period_date" interval="month" type="col" />
+                <field name="amount" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_cash_forecast_line_graph" model="ir.ui.view">
+        <field name="name">xpmi.cash.forecast.line.graph</field>
+        <field name="model">xpmi.cash.forecast.line</field>
+        <field name="arch" type="xml">
+            <!--
+                Saldo progressivo: il cumulato parte dal saldo di banca e cassa
+                e somma incassi e pagamenti periodo dopo periodo.
+            -->
+            <graph string="Saldo di cassa progressivo" type="line" cumulated="1"
+                   cumulated_start="1" sample="1">
+                <field name="period_date" interval="month" />
+                <field name="amount" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_cash_forecast_line_search" model="ir.ui.view">
+        <field name="name">xpmi.cash.forecast.line.search</field>
+        <field name="model">xpmi.cash.forecast.line</field>
+        <field name="arch" type="xml">
+            <search string="Previsioni di cassa">
+                <field name="name" string="Documento" />
+                <field name="partner_id" />
+                <field name="forecast_date" />
+                <filter name="filter_in" string="Incassi" domain="[('direction', '=', 'in')]" />
+                <filter name="filter_out" string="Pagamenti" domain="[('direction', '=', 'out')]" />
+                <separator />
+                <filter name="filter_invoices" string="Fatture"
+                        domain="[('document_type', 'in', ('customer_invoice', 'vendor_bill'))]" />
+                <filter name="filter_planned_invoices" string="Fatturazione prevista"
+                        domain="[('document_type', 'in', ('customer_invoice_planned', 'vendor_bill_planned'))]" />
+                <filter name="filter_orders" string="Ordini"
+                        domain="[('document_type', 'in', ('sale_order', 'purchase_order'))]" />
+                <separator />
+                <filter name="filter_overdue" string="Scaduto"
+                        domain="[('forecast_date', '&lt;', 'today')]" />
+                <filter name="filter_overdue_month" string="Scaduto oltre un mese"
+                        domain="[('is_overdue', '=', True)]" />
+                <filter name="filter_next_30" string="Prossimi 30 giorni"
+                        domain="[('forecast_date', '&gt;=', 'today'), ('forecast_date', '&lt;=', 'today +30d')]" />
+                <filter name="filter_next_90" string="Prossimi 90 giorni"
+                        domain="[('forecast_date', '&gt;=', 'today'), ('forecast_date', '&lt;=', 'today +90d')]" />
+                <separator />
+                <!--
+                    Su un campo data il menu di raggruppamento offre giorno,
+                    settimana, mese, trimestre e anno.
+                -->
+                <filter name="groupby_period" string="Periodo"
+                        context="{'group_by': 'period_date'}" />
+                <filter name="groupby_period_month" string="Periodo (etichetta mese)"
+                        context="{'group_by': 'period_month'}" />
+                <filter name="groupby_period_week" string="Periodo (etichetta settimana)"
+                        context="{'group_by': 'period_week'}" />
+                <filter name="groupby_document_type" string="Tipo documento"
+                        context="{'group_by': 'document_type'}" />
+                <filter name="groupby_invoice_source" string="Origine fattura"
+                        context="{'group_by': 'invoice_source'}" />
+                <filter name="groupby_direction" string="Segno"
+                        context="{'group_by': 'direction'}" />
+                <filter name="groupby_partner" string="Partner"
+                        context="{'group_by': 'partner_id'}" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_cash_forecast_line" model="ir.actions.act_window">
+        <field name="name">Previsioni di cassa</field>
+        <field name="res_model">xpmi.cash.forecast.line</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="search_view_id" ref="view_cash_forecast_line_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nessuna previsione di cassa</p>
+            <p>
+                Le previsioni sono ricostruite a ogni apertura da fatture clienti e
+                fornitori aperte, fatture programmate e ricorrenti, e da ordini clienti
+                e fornitori confermati non ancora fatturati.
+            </p>
+        </field>
+    </record>
+
+    <!--
+        Lista di sola lettura sui dati grezzi: mostra le righe cosi come sono
+        registrate, senza rigenerare le previsioni.
+    -->
+    <record id="action_cash_forecast_line_data" model="ir.actions.act_window">
+        <field name="name">Righe di previsione (dati)</field>
+        <field name="res_model">xpmi.cash.forecast.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_cash_forecast_line_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nessuna previsione di cassa</p>
+            <p>
+                Aggiorna le previsioni da Contabilita &#8250; Rendicontazione &#8250;
+                Previsioni di cassa.
+            </p>
+        </field>
+    </record>
+
+    <!--
+        Il menu passa da un'azione server così che le righe siano rigenerate a
+        ogni apertura; il cron giornaliero tiene aggiornata la dashboard.
+    -->
+    <record id="action_cash_forecast_open" model="ir.actions.server">
+        <field name="name">Previsioni di cassa</field>
+        <field name="model_id" ref="model_xpmi_cash_forecast_line" />
+        <field name="state">code</field>
+        <field name="code">action = model._action_open_forecast()</field>
+    </record>
+
+</odoo>

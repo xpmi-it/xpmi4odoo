@@ -1,0 +1,773 @@
+{
+  "version": "18.5.10",
+  "sheets": [
+    {
+      "id": "cash-forecast-dashboard",
+      "name": "Previsioni di cassa",
+      "colNumber": 20,
+      "rowNumber": 57,
+      "rows": {},
+      "cols": {
+        "0": {
+          "size": 200
+        }
+      },
+      "merges": [],
+      "cells": {
+        "A1": "=_t(\"Previsioni di cassa\")",
+        "A2": "=_t(\"Fatture aperte, fatturazione prevista e ordini confermati non ancora fatturati\")",
+        "A32": "=_t(\"Riepilogo mensile\")",
+        "A33": "=_t(\"Periodo\")",
+        "A34": "=_t(\"Saldo iniziale\")",
+        "A35": "=_t(\"Fatture clienti\")",
+        "A36": "=_t(\"Fatturazione prevista clienti\")",
+        "A37": "=_t(\"Ordini clienti\")",
+        "A38": "=_t(\"Fatture fornitori\")",
+        "A39": "=_t(\"Fatturazione prevista fornitori\")",
+        "A40": "=_t(\"Ordini fornitori\")",
+        "A41": "=_t(\"Saldo finale\")",
+        "B33": "Scaduto oltre 30 gg",
+        "B35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",B$33),0)",
+        "B36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",B$33),0)",
+        "B37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",B$33),0)",
+        "B38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",B$33),0)",
+        "B39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",B$33),0)",
+        "B40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",B$33),0)",
+        "B41": "=B34+SUM(B35:B40)",
+        "C33": "=TEXT(EDATE(TODAY(),0),\"yyyy-mm\")",
+        "C34": "=IFERROR(PIVOT.VALUE(3,\"amount\",\"document_type\",\"bank_balance\"),0)",
+        "C35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",C$33),0)",
+        "C36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",C$33),0)",
+        "C37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",C$33),0)",
+        "C38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",C$33),0)",
+        "C39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",C$33),0)",
+        "C40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",C$33),0)",
+        "C41": "=C34+SUM(C35:C40)",
+        "D33": "=TEXT(EDATE(TODAY(),1),\"yyyy-mm\")",
+        "D34": "=C41",
+        "D35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",D$33),0)",
+        "D36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",D$33),0)",
+        "D37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",D$33),0)",
+        "D38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",D$33),0)",
+        "D39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",D$33),0)",
+        "D40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",D$33),0)",
+        "D41": "=D34+SUM(D35:D40)",
+        "E33": "=TEXT(EDATE(TODAY(),2),\"yyyy-mm\")",
+        "E34": "=D41",
+        "E35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",E$33),0)",
+        "E36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",E$33),0)",
+        "E37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",E$33),0)",
+        "E38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",E$33),0)",
+        "E39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",E$33),0)",
+        "E40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",E$33),0)",
+        "E41": "=E34+SUM(E35:E40)",
+        "F33": "=TEXT(EDATE(TODAY(),3),\"yyyy-mm\")",
+        "F34": "=E41",
+        "F35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",F$33),0)",
+        "F36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",F$33),0)",
+        "F37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",F$33),0)",
+        "F38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",F$33),0)",
+        "F39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",F$33),0)",
+        "F40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",F$33),0)",
+        "F41": "=F34+SUM(F35:F40)",
+        "G33": "=TEXT(EDATE(TODAY(),4),\"yyyy-mm\")",
+        "G34": "=F41",
+        "G35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",G$33),0)",
+        "G36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",G$33),0)",
+        "G37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",G$33),0)",
+        "G38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",G$33),0)",
+        "G39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",G$33),0)",
+        "G40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",G$33),0)",
+        "G41": "=G34+SUM(G35:G40)",
+        "H33": "=TEXT(EDATE(TODAY(),5),\"yyyy-mm\")",
+        "H34": "=G41",
+        "H35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",H$33),0)",
+        "H36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",H$33),0)",
+        "H37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",H$33),0)",
+        "H38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",H$33),0)",
+        "H39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",H$33),0)",
+        "H40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",H$33),0)",
+        "H41": "=H34+SUM(H35:H40)",
+        "I33": "=TEXT(EDATE(TODAY(),6),\"yyyy-mm\")",
+        "I34": "=H41",
+        "I35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",I$33),0)",
+        "I36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",I$33),0)",
+        "I37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",I$33),0)",
+        "I38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",I$33),0)",
+        "I39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",I$33),0)",
+        "I40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",I$33),0)",
+        "I41": "=I34+SUM(I35:I40)",
+        "J33": "=TEXT(EDATE(TODAY(),7),\"yyyy-mm\")",
+        "J34": "=I41",
+        "J35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",J$33),0)",
+        "J36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",J$33),0)",
+        "J37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",J$33),0)",
+        "J38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",J$33),0)",
+        "J39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",J$33),0)",
+        "J40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",J$33),0)",
+        "J41": "=J34+SUM(J35:J40)",
+        "K33": "=TEXT(EDATE(TODAY(),8),\"yyyy-mm\")",
+        "K34": "=J41",
+        "K35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",K$33),0)",
+        "K36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",K$33),0)",
+        "K37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",K$33),0)",
+        "K38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",K$33),0)",
+        "K39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",K$33),0)",
+        "K40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",K$33),0)",
+        "K41": "=K34+SUM(K35:K40)",
+        "L33": "=TEXT(EDATE(TODAY(),9),\"yyyy-mm\")",
+        "L34": "=K41",
+        "L35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",L$33),0)",
+        "L36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",L$33),0)",
+        "L37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",L$33),0)",
+        "L38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",L$33),0)",
+        "L39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",L$33),0)",
+        "L40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",L$33),0)",
+        "L41": "=L34+SUM(L35:L40)",
+        "M33": "=TEXT(EDATE(TODAY(),10),\"yyyy-mm\")",
+        "M34": "=L41",
+        "M35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",M$33),0)",
+        "M36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",M$33),0)",
+        "M37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",M$33),0)",
+        "M38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",M$33),0)",
+        "M39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",M$33),0)",
+        "M40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",M$33),0)",
+        "M41": "=M34+SUM(M35:M40)",
+        "N33": "=TEXT(EDATE(TODAY(),11),\"yyyy-mm\")",
+        "N34": "=M41",
+        "N35": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice\",\"period_month\",N$33),0)",
+        "N36": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_month\",N$33),0)",
+        "N37": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"sale_order\",\"period_month\",N$33),0)",
+        "N38": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill\",\"period_month\",N$33),0)",
+        "N39": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_month\",N$33),0)",
+        "N40": "=IFERROR(PIVOT.VALUE(1,\"amount\",\"document_type\",\"purchase_order\",\"period_month\",N$33),0)",
+        "N41": "=N34+SUM(N35:N40)",
+        "A44": "=_t(\"Riepilogo settimanale\")",
+        "A45": "=_t(\"Periodo\")",
+        "A46": "=_t(\"Saldo iniziale\")",
+        "A47": "=_t(\"Fatture clienti\")",
+        "A48": "=_t(\"Fatturazione prevista clienti\")",
+        "A49": "=_t(\"Ordini clienti\")",
+        "A50": "=_t(\"Fatture fornitori\")",
+        "A51": "=_t(\"Fatturazione prevista fornitori\")",
+        "A52": "=_t(\"Ordini fornitori\")",
+        "A53": "=_t(\"Saldo finale\")",
+        "B45": "Scaduto oltre 30 gg",
+        "B47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",B$45),0)",
+        "B48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",B$45),0)",
+        "B49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",B$45),0)",
+        "B50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",B$45),0)",
+        "B51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",B$45),0)",
+        "B52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",B$45),0)",
+        "B53": "=B46+SUM(B47:B52)",
+        "C45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+0,\"yyyy-mm-dd\")",
+        "C46": "=IFERROR(PIVOT.VALUE(3,\"amount\",\"document_type\",\"bank_balance\"),0)",
+        "C47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",C$45),0)",
+        "C48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",C$45),0)",
+        "C49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",C$45),0)",
+        "C50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",C$45),0)",
+        "C51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",C$45),0)",
+        "C52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",C$45),0)",
+        "C53": "=C46+SUM(C47:C52)",
+        "D45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+7,\"yyyy-mm-dd\")",
+        "D46": "=C53",
+        "D47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",D$45),0)",
+        "D48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",D$45),0)",
+        "D49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",D$45),0)",
+        "D50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",D$45),0)",
+        "D51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",D$45),0)",
+        "D52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",D$45),0)",
+        "D53": "=D46+SUM(D47:D52)",
+        "E45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+14,\"yyyy-mm-dd\")",
+        "E46": "=D53",
+        "E47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",E$45),0)",
+        "E48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",E$45),0)",
+        "E49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",E$45),0)",
+        "E50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",E$45),0)",
+        "E51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",E$45),0)",
+        "E52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",E$45),0)",
+        "E53": "=E46+SUM(E47:E52)",
+        "F45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+21,\"yyyy-mm-dd\")",
+        "F46": "=E53",
+        "F47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",F$45),0)",
+        "F48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",F$45),0)",
+        "F49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",F$45),0)",
+        "F50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",F$45),0)",
+        "F51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",F$45),0)",
+        "F52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",F$45),0)",
+        "F53": "=F46+SUM(F47:F52)",
+        "G45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+28,\"yyyy-mm-dd\")",
+        "G46": "=F53",
+        "G47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",G$45),0)",
+        "G48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",G$45),0)",
+        "G49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",G$45),0)",
+        "G50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",G$45),0)",
+        "G51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",G$45),0)",
+        "G52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",G$45),0)",
+        "G53": "=G46+SUM(G47:G52)",
+        "H45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+35,\"yyyy-mm-dd\")",
+        "H46": "=G53",
+        "H47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",H$45),0)",
+        "H48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",H$45),0)",
+        "H49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",H$45),0)",
+        "H50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",H$45),0)",
+        "H51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",H$45),0)",
+        "H52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",H$45),0)",
+        "H53": "=H46+SUM(H47:H52)",
+        "I45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+42,\"yyyy-mm-dd\")",
+        "I46": "=H53",
+        "I47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",I$45),0)",
+        "I48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",I$45),0)",
+        "I49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",I$45),0)",
+        "I50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",I$45),0)",
+        "I51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",I$45),0)",
+        "I52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",I$45),0)",
+        "I53": "=I46+SUM(I47:I52)",
+        "J45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+49,\"yyyy-mm-dd\")",
+        "J46": "=I53",
+        "J47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",J$45),0)",
+        "J48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",J$45),0)",
+        "J49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",J$45),0)",
+        "J50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",J$45),0)",
+        "J51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",J$45),0)",
+        "J52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",J$45),0)",
+        "J53": "=J46+SUM(J47:J52)",
+        "K45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+56,\"yyyy-mm-dd\")",
+        "K46": "=J53",
+        "K47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",K$45),0)",
+        "K48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",K$45),0)",
+        "K49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",K$45),0)",
+        "K50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",K$45),0)",
+        "K51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",K$45),0)",
+        "K52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",K$45),0)",
+        "K53": "=K46+SUM(K47:K52)",
+        "L45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+63,\"yyyy-mm-dd\")",
+        "L46": "=K53",
+        "L47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",L$45),0)",
+        "L48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",L$45),0)",
+        "L49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",L$45),0)",
+        "L50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",L$45),0)",
+        "L51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",L$45),0)",
+        "L52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",L$45),0)",
+        "L53": "=L46+SUM(L47:L52)",
+        "M45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+70,\"yyyy-mm-dd\")",
+        "M46": "=L53",
+        "M47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",M$45),0)",
+        "M48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",M$45),0)",
+        "M49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",M$45),0)",
+        "M50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",M$45),0)",
+        "M51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",M$45),0)",
+        "M52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",M$45),0)",
+        "M53": "=M46+SUM(M47:M52)",
+        "N45": "=TEXT(TODAY()-WEEKDAY(TODAY(),3)+77,\"yyyy-mm-dd\")",
+        "N46": "=M53",
+        "N47": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice\",\"period_week\",N$45),0)",
+        "N48": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"customer_invoice_planned\",\"period_week\",N$45),0)",
+        "N49": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"sale_order\",\"period_week\",N$45),0)",
+        "N50": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill\",\"period_week\",N$45),0)",
+        "N51": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"vendor_bill_planned\",\"period_week\",N$45),0)",
+        "N52": "=IFERROR(PIVOT.VALUE(2,\"amount\",\"document_type\",\"purchase_order\",\"period_week\",N$45),0)",
+        "N53": "=N46+SUM(N47:N52)"
+      },
+      "styles": {
+        "A1": 1,
+        "A2": 3,
+        "A32": 2,
+        "A33:A41": 3,
+        "A33": 2,
+        "A34": 2,
+        "A41": 2,
+        "B33": 5,
+        "C33": 5,
+        "D33": 5,
+        "E33": 5,
+        "F33": 5,
+        "G33": 5,
+        "H33": 5,
+        "I33": 5,
+        "J33": 5,
+        "K33": 5,
+        "L33": 5,
+        "M33": 5,
+        "N33": 5,
+        "B34:N41": 4,
+        "A44": 2,
+        "A45:A53": 3,
+        "A45": 2,
+        "A46": 2,
+        "A53": 2,
+        "B45": 5,
+        "C45": 5,
+        "D45": 5,
+        "E45": 5,
+        "F45": 5,
+        "G45": 5,
+        "H45": 5,
+        "I45": 5,
+        "J45": 5,
+        "K45": 5,
+        "L45": 5,
+        "M45": 5,
+        "N45": 5,
+        "B46:N53": 4
+      },
+      "formats": {
+        "B34:N41": 1,
+        "B46:N53": 1
+      },
+      "borders": {},
+      "conditionalFormats": [],
+      "dataValidationRules": [],
+      "figures": [
+        {
+          "id": "cf-score-bank",
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Saldo banca e cassa oggi",
+              "bold": true,
+              "color": "#434343"
+            },
+            "background": "#F8FAFC",
+            "keyValue": "Dati!B2",
+            "baseline": "",
+            "baselineMode": "difference",
+            "baselineColorDown": "#EA6175",
+            "baselineColorUp": "#43C5B1",
+            "humanize": false,
+            "chartId": "cf-score-bank"
+          },
+          "col": 0,
+          "row": 3,
+          "offset": {
+            "x": 8,
+            "y": 8
+          },
+          "width": 270,
+          "height": 120
+        },
+        {
+          "id": "cf-score-in",
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Incassi previsti",
+              "bold": true,
+              "color": "#434343"
+            },
+            "background": "#F0FDF4",
+            "keyValue": "Dati!B3",
+            "baseline": "",
+            "baselineMode": "difference",
+            "baselineColorDown": "#EA6175",
+            "baselineColorUp": "#43C5B1",
+            "humanize": false,
+            "chartId": "cf-score-in"
+          },
+          "col": 3,
+          "row": 3,
+          "offset": {
+            "x": 8,
+            "y": 8
+          },
+          "width": 270,
+          "height": 120
+        },
+        {
+          "id": "cf-score-out",
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Pagamenti previsti",
+              "bold": true,
+              "color": "#434343"
+            },
+            "background": "#FEF2F2",
+            "keyValue": "Dati!B4",
+            "baseline": "",
+            "baselineMode": "difference",
+            "baselineColorDown": "#EA6175",
+            "baselineColorUp": "#43C5B1",
+            "humanize": false,
+            "chartId": "cf-score-out"
+          },
+          "col": 6,
+          "row": 3,
+          "offset": {
+            "x": 8,
+            "y": 8
+          },
+          "width": 270,
+          "height": 120
+        },
+        {
+          "id": "cf-score-net",
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Saldo previsto",
+              "bold": true,
+              "color": "#434343"
+            },
+            "background": "#EFF6FF",
+            "keyValue": "Dati!B5",
+            "baseline": "",
+            "baselineMode": "difference",
+            "baselineColorDown": "#EA6175",
+            "baselineColorUp": "#43C5B1",
+            "humanize": false,
+            "chartId": "cf-score-net"
+          },
+          "col": 9,
+          "row": 3,
+          "offset": {
+            "x": 8,
+            "y": 8
+          },
+          "width": 270,
+          "height": 120
+        },
+        {
+          "id": "cf-chart-balance",
+          "tag": "chart",
+          "data": {
+            "title": {
+              "text": "Saldo di cassa progressivo",
+              "bold": true,
+              "color": "#01666B"
+            },
+            "background": "#FFFFFF",
+            "legendPosition": "top",
+            "metaData": {
+              "groupBy": [
+                "period_date:month",
+                "scenario"
+              ],
+              "measure": "amount",
+              "order": null,
+              "resModel": "xpmi.cash.forecast.projection",
+              "mode": "line",
+              "cumulatedStart": true
+            },
+            "searchParams": {
+              "comparison": null,
+              "context": {},
+              "domain": [],
+              "groupBy": [
+                "period_date:month",
+                "scenario"
+              ],
+              "orderBy": []
+            },
+            "type": "odoo_line",
+            "dataSets": [
+              {
+                "backgroundColor": "#01666B"
+              },
+              {
+                "backgroundColor": "#43C5B1"
+              }
+            ],
+            "humanize": true,
+            "verticalAxisPosition": "left",
+            "stacked": false,
+            "chartId": "cf-chart-balance",
+            "fieldMatching": {
+              "cf-filter-period": {
+                "chain": "period_date",
+                "type": "date",
+                "offset": 0
+              }
+            },
+            "cumulative": true,
+            "cumulatedStart": true,
+            "fillArea": false
+          },
+          "col": 0,
+          "row": 9,
+          "offset": {
+            "x": 8,
+            "y": 0
+          },
+          "width": 1100,
+          "height": 260
+        },
+        {
+          "id": "cf-chart-flows",
+          "tag": "chart",
+          "data": {
+            "title": {
+              "text": "Incassi e pagamenti previsti per periodo",
+              "bold": true,
+              "color": "#01666B"
+            },
+            "background": "#FFFFFF",
+            "legendPosition": "top",
+            "metaData": {
+              "groupBy": [
+                "period_date:month",
+                "document_type"
+              ],
+              "measure": "amount",
+              "order": null,
+              "resModel": "xpmi.cash.forecast.line",
+              "mode": "bar"
+            },
+            "searchParams": {
+              "comparison": null,
+              "context": {},
+              "domain": [
+                [
+                  "document_type",
+                  "!=",
+                  "bank_balance"
+                ]
+              ],
+              "groupBy": [
+                "period_date:month",
+                "document_type"
+              ],
+              "orderBy": []
+            },
+            "type": "odoo_bar",
+            "dataSets": [],
+            "humanize": true,
+            "verticalAxisPosition": "left",
+            "stacked": true,
+            "chartId": "cf-chart-flows",
+            "fieldMatching": {
+              "cf-filter-period": {
+                "chain": "period_date",
+                "type": "date",
+                "offset": 0
+              }
+            }
+          },
+          "col": 0,
+          "row": 20,
+          "offset": {
+            "x": 8,
+            "y": 0
+          },
+          "width": 1100,
+          "height": 260
+        }
+      ],
+      "tables": [],
+      "areGridLinesVisible": false,
+      "isVisible": true,
+      "headerGroups": {
+        "ROW": [],
+        "COL": []
+      },
+      "comments": {}
+    },
+    {
+      "id": "cash-forecast-data",
+      "name": "Dati",
+      "colNumber": 6,
+      "rowNumber": 20,
+      "rows": {},
+      "cols": {
+        "0": {
+          "size": 200
+        },
+        "1": {
+          "size": 150
+        }
+      },
+      "merges": [],
+      "cells": {
+        "A1": "=_t(\"Indicatore\")",
+        "B1": "=_t(\"Valore\")",
+        "A2": "=_t(\"Saldo banca e cassa oggi\")",
+        "B2": "=PIVOT.VALUE(3,\"amount\",\"document_type\",\"bank_balance\")",
+        "A3": "=_t(\"Incassi previsti\")",
+        "B3": "=PIVOT.VALUE(3,\"amount\",\"document_type\",\"customer_invoice\")+IFERROR(PIVOT.VALUE(3,\"amount\",\"document_type\",\"customer_invoice_planned\"),0)+PIVOT.VALUE(3,\"amount\",\"document_type\",\"sale_order\")",
+        "A4": "=_t(\"Pagamenti previsti\")",
+        "B4": "=PIVOT.VALUE(3,\"amount\",\"document_type\",\"vendor_bill\")+IFERROR(PIVOT.VALUE(3,\"amount\",\"document_type\",\"vendor_bill_planned\"),0)+PIVOT.VALUE(3,\"amount\",\"document_type\",\"purchase_order\")",
+        "A5": "=_t(\"Saldo previsto\")",
+        "B5": "=B2+B3+B4"
+      },
+      "styles": {
+        "A1:B1": 2,
+        "A2:A5": 3
+      },
+      "formats": {},
+      "borders": {},
+      "conditionalFormats": [],
+      "dataValidationRules": [],
+      "figures": [],
+      "tables": [],
+      "areGridLinesVisible": false,
+      "isVisible": true,
+      "headerGroups": {
+        "ROW": [],
+        "COL": []
+      },
+      "comments": {}
+    }
+  ],
+  "styles": {
+    "1": {
+      "textColor": "#01666b",
+      "bold": true,
+      "fontSize": 16
+    },
+    "2": {
+      "textColor": "#434343",
+      "bold": true,
+      "fontSize": 11
+    },
+    "3": {
+      "textColor": "#434343",
+      "verticalAlign": "middle"
+    },
+    "4": {
+      "textColor": "#434343",
+      "align": "right"
+    },
+    "5": {
+      "textColor": "#434343",
+      "bold": true,
+      "fontSize": 11,
+      "align": "right"
+    }
+  },
+  "formats": {
+    "1": "#,##0.00"
+  },
+  "borders": {},
+  "revisionId": "START_REVISION",
+  "uniqueFigureIds": true,
+  "settings": {
+    "locale": {
+      "name": "Italiano",
+      "code": "it_IT",
+      "thousandsSeparator": ".",
+      "decimalSeparator": ",",
+      "dateFormat": "dd/mm/yyyy",
+      "timeFormat": "hh:mm:ss",
+      "formulaArgSeparator": ",",
+      "weekStart": 1
+    }
+  },
+  "pivots": {
+    "1": {
+      "type": "ODOO",
+      "id": "1",
+      "formulaId": "1",
+      "name": "Previsione per mese",
+      "model": "xpmi.cash.forecast.line",
+      "domain": [],
+      "context": {},
+      "columns": [
+        {
+          "fieldName": "period_month",
+          "order": "asc"
+        }
+      ],
+      "rows": [
+        {
+          "fieldName": "document_type",
+          "order": "asc"
+        }
+      ],
+      "measures": [
+        {
+          "id": "amount",
+          "fieldName": "amount",
+          "aggregator": "sum"
+        }
+      ],
+      "fieldMatching": {
+        "cf-filter-period": {
+          "chain": "period_date",
+          "type": "date",
+          "offset": 0
+        }
+      }
+    },
+    "2": {
+      "type": "ODOO",
+      "id": "2",
+      "formulaId": "2",
+      "name": "Previsione per settimana",
+      "model": "xpmi.cash.forecast.line",
+      "domain": [],
+      "context": {},
+      "columns": [
+        {
+          "fieldName": "period_week",
+          "order": "asc"
+        }
+      ],
+      "rows": [
+        {
+          "fieldName": "document_type",
+          "order": "asc"
+        }
+      ],
+      "measures": [
+        {
+          "id": "amount",
+          "fieldName": "amount",
+          "aggregator": "sum"
+        }
+      ],
+      "fieldMatching": {
+        "cf-filter-period": {
+          "chain": "period_date",
+          "type": "date",
+          "offset": 0
+        }
+      }
+    },
+    "3": {
+      "type": "ODOO",
+      "id": "3",
+      "formulaId": "3",
+      "name": "Previsione per tipo documento",
+      "model": "xpmi.cash.forecast.line",
+      "domain": [],
+      "context": {},
+      "columns": [],
+      "rows": [
+        {
+          "fieldName": "document_type",
+          "order": "asc"
+        }
+      ],
+      "measures": [
+        {
+          "id": "amount",
+          "fieldName": "amount",
+          "aggregator": "sum"
+        }
+      ],
+      "fieldMatching": {
+        "cf-filter-period": {
+          "chain": "period_date",
+          "type": "date",
+          "offset": 0
+        }
+      }
+    }
+  },
+  "pivotNextId": 4,
+  "customTableStyles": {},
+  "globalFilters": [
+    {
+      "id": "cf-filter-period",
+      "type": "date",
+      "label": "Periodo"
+    }
+  ],
+  "lists": {},
+  "listNextId": 1,
+  "chartOdooMenusReferences": {}
+}

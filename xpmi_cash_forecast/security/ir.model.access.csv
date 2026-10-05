@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_xpmi_cash_forecast_line_invoice,xpmi.cash.forecast.line invoice,model_xpmi_cash_forecast_line,account.group_account_invoice,1,0,0,0
+access_xpmi_cash_forecast_line_readonly,xpmi.cash.forecast.line readonly,model_xpmi_cash_forecast_line,account.group_account_readonly,1,0,0,0
+access_xpmi_cash_forecast_projection_invoice,xpmi.cash.forecast.projection invoice,model_xpmi_cash_forecast_projection,account.group_account_invoice,1,0,0,0
+access_xpmi_cash_forecast_projection_readonly,xpmi.cash.forecast.projection readonly,model_xpmi_cash_forecast_projection,account.group_account_readonly,1,0,0,0

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_cash_forecast_projection_list" model="ir.ui.view">
+        <field name="name">xpmi.cash.forecast.projection.list</field>
+        <field name="model">xpmi.cash.forecast.projection</field>
+        <field name="arch" type="xml">
+            <list string="Proiezione di cassa" create="false" edit="false" delete="false"
+                  default_order="period_date">
+                <field name="scenario" />
+                <field name="period_date" />
+                <field name="forecast_date" optional="hide" />
+                <field name="document_type" />
+                <field name="name" />
+                <field name="partner_id" optional="show" />
+                <field name="amount" sum="Totale previsto" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="line_id" optional="hide" />
+                <field name="company_id" groups="base.group_multi_company" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cash_forecast_projection_search" model="ir.ui.view">
+        <field name="name">xpmi.cash.forecast.projection.search</field>
+        <field name="model">xpmi.cash.forecast.projection</field>
+        <field name="arch" type="xml">
+            <search string="Proiezione di cassa">
+                <field name="name" string="Documento" />
+                <field name="partner_id" />
+                <field name="period_date" />
+                <filter name="filter_scenario_invoices" string="Banca e fatture"
+                        domain="[('scenario', '=', 'invoices')]" />
+                <filter name="filter_scenario_orders" string="Banca, fatture e ordini"
+                        domain="[('scenario', '=', 'orders')]" />
+                <separator />
+                <filter name="groupby_scenario" string="Scenario"
+                        context="{'group_by': 'scenario'}" />
+                <filter name="groupby_period" string="Periodo"
+                        context="{'group_by': 'period_date'}" />
+                <filter name="groupby_document_type" string="Tipo documento"
+                        context="{'group_by': 'document_type'}" />
+                <filter name="groupby_partner" string="Partner"
+                        context="{'group_by': 'partner_id'}" />
+            </search>
+        </field>
+    </record>
+
+    <!--
+        Lista di sola lettura sui dati grezzi: serve a controllare cosa alimenta
+        le due linee del saldo progressivo, senza rigenerare le previsioni.
+    -->
+    <record id="action_cash_forecast_projection_data" model="ir.actions.act_window">
+        <field name="name">Proiezione di cassa (dati)</field>
+        <field name="res_model">xpmi.cash.forecast.projection</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_cash_forecast_projection_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nessuna proiezione di cassa</p>
+            <p>
+                La proiezione replica ogni riga di previsione per ogni scenario di
+                cui fa parte. Aggiorna le previsioni da Contabilita &#8250;
+                Rendicontazione &#8250; Previsioni di cassa.
+            </p>
+        </field>
+    </record>
+
+</odoo>

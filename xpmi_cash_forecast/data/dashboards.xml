@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="spreadsheet_dashboard_cash_forecast" model="spreadsheet.dashboard">
+        <field name="name">Previsioni di cassa</field>
+        <field
+            name="spreadsheet_binary_data"
+            type="base64"
+            file="xpmi_cash_forecast/data/files/cash_forecast_dashboard.json"
+        />
+        <field name="main_data_model_ids" eval="[Command.link(ref('model_xpmi_cash_forecast_line'))]" />
+        <field name="dashboard_group_id" ref="spreadsheet_dashboard.spreadsheet_dashboard_group_finance" />
+        <field name="group_ids" eval="[Command.link(ref('account.group_account_readonly')), Command.link(ref('account.group_account_invoice'))]" />
+        <field name="sequence">50</field>
+        <field name="is_published" eval="True" />
+    </record>
+
+</odoo>

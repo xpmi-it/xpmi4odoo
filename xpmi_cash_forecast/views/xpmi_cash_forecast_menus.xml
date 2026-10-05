@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem
+        id="menu_cash_forecast"
+        name="Previsioni di cassa"
+        parent="account.menu_finance_reports"
+        action="action_cash_forecast_open"
+        sequence="90"
+        groups="account.group_account_readonly,account.group_account_invoice"
+    />
+
+    <!--
+        Sotto la configurazione delle dashboard: liste di sola lettura sui dati
+        che alimentano la dashboard, per controllare le righe una per una.
+    -->
+    <menuitem
+        id="menu_cash_forecast_line_data"
+        name="Righe di previsione di cassa"
+        parent="spreadsheet_dashboard.spreadsheet_dashboard_menu_configuration"
+        action="action_cash_forecast_line_data"
+        sequence="80"
+        groups="account.group_account_readonly,account.group_account_invoice"
+    />
+
+    <menuitem
+        id="menu_cash_forecast_projection_data"
+        name="Proiezione di cassa"
+        parent="spreadsheet_dashboard.spreadsheet_dashboard_menu_configuration"
+        action="action_cash_forecast_projection_data"
+        sequence="81"
+        groups="account.group_account_readonly,account.group_account_invoice"
+    />
+
+</odoo>

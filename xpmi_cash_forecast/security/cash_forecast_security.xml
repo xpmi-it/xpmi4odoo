@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="cash_forecast_line_company_rule" model="ir.rule">
+        <field name="name">Previsioni di cassa – multi azienda</field>
+        <field name="model_id" ref="model_xpmi_cash_forecast_line" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="cash_forecast_projection_company_rule" model="ir.rule">
+        <field name="name">Proiezione di cassa – multi azienda</field>
+        <field name="model_id" ref="model_xpmi_cash_forecast_projection" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>
